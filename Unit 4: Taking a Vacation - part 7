@@ -1,0 +1,24 @@
+def hotel_cost(nights):
+  if nights <= 0: return 0
+  return 140 * nights
+
+def plane_ride_cost(city):
+  return {
+    "Charlotte": 183,
+    "Tampa": 220,
+    "Pittsburgh": 222,
+    "Los Angeles": 475}.get(city, 999)
+
+def rental_car_cost(days):
+  return days * 40 - (
+    50 if days >= 7 else (
+      20 if days >= 3 else 0))
+
+def trip_cost(city, days, spending_money):
+  return (
+    rental_car_cost(days) +
+    hotel_cost(days - 1) +  # off by one bug in codecademy
+    plane_ride_cost(city) +
+    spending_money)
+
+print(trip_cost("Los Angeles", 5, 600))
